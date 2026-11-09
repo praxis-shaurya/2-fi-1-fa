@@ -1,0 +1,157 @@
+{
+	"assetNamespace": "fab",
+	"listing":
+	{
+		"averageRating": 5,
+		"createdAt": "",
+		"description": "<ul>\n<li>Dirty leaking concrete wall </li>\n<li>2x8k texture </li>\n<li>spring season</li>\n<li>location : Slovakia</li>\n</ul>\n<p>3d scan made of 127 photos @ Samsung Galaxy A33 5G</p>",
+		"isAiForbidden": false,
+		"isAiGenerated": false,
+		"lastUpdatedAt": "",
+		"listingType": "3d-model",
+		"media": "https://media.fab.com/image_previews/gallery_images/bd87313b-fc3d-4f2b-ba26-350e96c91154/c28bc0d4-6e88-4a4b-8434-58c7821e19a5.jpeg",
+		"publishedAt": "2026-05-21T07:39:16.468915Z",
+		"reviewCount": 2,
+		"thumbnail": "https://media.fab.com/image_previews/gallery_images/9c1f5856-2a7f-494c-8caa-5237dea8777b/fab06a58-d975-4df2-b6b2-c4771e814593.jpeg",
+		"title": "Dirty leaking concrete wall",
+		"uid": "3b5bc07b-fadb-488b-a9b8-9cf23084487a",
+		"updatedAt": "",
+		"user":
+		{
+			"coverImageUrl": "",
+			"profileImageUrl": "https://cdn1.epicgames.com/fab/seller/o-nube3rv4t6ybyf8u6729e3spg26h9v/profileImage/blob-500x500-9965bb419c283223060ff26c1a105b7f.jpg",
+			"sellerName": "SKRUNDA",
+			"uid": "73eb8895-5dd6-4b78-8408-84210fd2bf8d"
+		},
+		"tags": [
+			{
+				"name": "Plaster",
+				"slug": "plaster",
+				"uid": "092a1874-37db-4b5e-adce-41d43bd5dc9d"
+			},
+			{
+				"name": "Decay",
+				"slug": "decay",
+				"uid": "0be1c922-769b-4f81-979e-642d027e62d3"
+			},
+			{
+				"name": "Street",
+				"slug": "street",
+				"uid": "1714b21a-573d-4d0e-aa60-faa1144f56e0"
+			},
+			{
+				"name": "Stone",
+				"slug": "stone",
+				"uid": "3b7b9846-a26c-48e0-99e0-866350f162aa"
+			},
+			{
+				"name": "Dirty",
+				"slug": "dirty",
+				"uid": "54b617d2-d7e9-439d-9bd8-2787675a47e3"
+			},
+			{
+				"name": "Reinforced",
+				"slug": "reinforced",
+				"uid": "566a6494-68c5-42cf-963c-34133106e8ab"
+			},
+			{
+				"name": "Grit",
+				"slug": "grit",
+				"uid": "815da710-a317-434f-92ef-01a2486f1bf9"
+			},
+			{
+				"name": "Concrete",
+				"slug": "concrete",
+				"uid": "9626f858-b7f1-4677-bd48-369c43eebbd1"
+			},
+			{
+				"name": "Block",
+				"slug": "block",
+				"uid": "994085c1-13b5-477c-ad13-8d603b788d40"
+			},
+			{
+				"name": "Urban",
+				"slug": "urban",
+				"uid": "a689898c-31ae-4d96-8b43-45002335d552"
+			},
+			{
+				"name": "Rough",
+				"slug": "rough",
+				"uid": "abd824a5-384f-43b7-8e90-b4a5207bb0b3"
+			},
+			{
+				"name": "Grunge",
+				"slug": "grunge",
+				"uid": "ac954825-7cee-4d92-b13f-ee07f0b1eee0"
+			},
+			{
+				"name": "Wall",
+				"slug": "wall",
+				"uid": "b138d7ed-637e-4c63-b1dd-2295e069f06f"
+			},
+			{
+				"name": "Fence",
+				"slug": "fence",
+				"uid": "dcb71319-e675-43bc-84e7-66abd8bbe63f"
+			},
+			{
+				"name": "City",
+				"slug": "city",
+				"uid": "f57a177e-d2a9-4a6c-96e2-818ae6681e77"
+			}
+		],
+		"category":
+		{
+			"name": "Buildings & Architecture",
+			"path": "buildings-architecture",
+			"slug": "buildings-architecture",
+			"uid": "eec3bdd5-ba7a-45a8-b15d-67462b9630f6"
+		},
+		"assetFormats": [
+			{
+				"assetFormatType":
+				{
+					"name": "FBX",
+					"groupName": "3D Exchange Formats",
+					"code": "fbx",
+					"icon": "cube",
+					"extensions": [
+						"fbx"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "Converted Files",
+					"groupName": "",
+					"code": "converted-files",
+					"icon": "cube",
+					"extensions": [
+						"gltf",
+						"glb",
+						"usdz"
+					]
+				}
+			}
+		],
+		"_PluginMetas":
+		{
+			"apiDataVersion": "0.0.1",
+			"entitlementUid": "b6428b63-95d4-403e-91dd-a43fea76c46e",
+			"cacheSize": 0,
+			"downloaded": []
+		}
+	},
+	"target": "",
+	"quality": "",
+	"format": "glb",
+	"fileId": "0798628b-6eab-4219-81d5-967bf4ebaf12",
+	"platformIncluded": "",
+	"distributionPointBaseUrls": [],
+	"distributionMethod": "",
+	"entitlementUid": "b6428b63-95d4-403e-91dd-a43fea76c46e",
+	"invertedNormal": false,
+	"isConverted": true,
+	"isQuixel": false
+}

@@ -1,0 +1,167 @@
+{
+	"assetNamespace": "fab",
+	"listing":
+	{
+		"averageRating": 5,
+		"createdAt": "",
+		"description": "<p><strong>Texel density:</strong> 8192 px/m</p><p><strong>Scan Area:</strong> 1x1 m</p><p><strong>Maps:</strong> Roughness Normal AO Cavity Gloss Specular Basecolor Displacement Bump</p>\n<p><span>Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available </span><a target=\"_blank\" href=\"https://www.fab.com/sellers/Quixel\" rel=\"noopener noreferrer nofollow\"><span><u>here</u></span></a><span> on Fab.</span></p><p></p><p><span>For any questions or support regarding Quixel content, please get in touch </span><a target=\"_blank\" href=\"https://support.fab.com/s/?ProductOrigin=1PC\" rel=\"noopener noreferrer nofollow\"><span><u>here</u></span></a><span>.</span></p>",
+		"isAiForbidden": false,
+		"isAiGenerated": false,
+		"lastUpdatedAt": "",
+		"listingType": "material",
+		"media": "https://media.fab.com/image_previews/gallery_images/82f2ce06-0873-4bd5-be8d-9fac9e51e15d/8af69f50-d859-4418-b731-34a17474c58a.jpeg",
+		"publishedAt": "2026-11-05T19:11:54.103667Z",
+		"reviewCount": 1,
+		"thumbnail": "https://media.fab.com/image_previews/gallery_images/e58ec148-06fb-465c-9099-bd61abeaaba4/f46d8377-0164-4beb-8a24-ee0bf33076d9.jpeg",
+		"title": "Damaged Concrete Wall",
+		"uid": "1c0dbf8b-18be-4bfb-845b-81bb5c2d0c16",
+		"updatedAt": "",
+		"user":
+		{
+			"coverImageUrl": "https://cdn1.epicgames.com/fab/seller/o-cbf5bbfdb340d6a839b5520cb31328/cover/67dbdb8f.jpg",
+			"profileImageUrl": "https://cdn1.epicgames.com/fab/seller/o-cbf5bbfdb340d6a839b5520cb31328/profile/39e5dabd.png",
+			"sellerName": "Quixel Megascans",
+			"uid": "45ea3429-f62c-4f17-aa15-5bb9dfcd0079"
+		},
+		"tags": [
+			{
+				"name": "Plaster",
+				"slug": "plaster",
+				"uid": "092a1874-37db-4b5e-adce-41d43bd5dc9d"
+			},
+			{
+				"name": "Uneven",
+				"slug": "uneven",
+				"uid": "13cf0a90-c7ad-40a4-b911-6717318e3a6e"
+			},
+			{
+				"name": "Cement",
+				"slug": "cement",
+				"uid": "438124cf-f0f2-4da8-b70f-c54659131233"
+			},
+			{
+				"name": "Stain",
+				"slug": "stain",
+				"uid": "4d3cc856-559e-417a-b6d1-dff74d381e71"
+			},
+			{
+				"name": "Damaged",
+				"slug": "damaged",
+				"uid": "540d9215-2e43-430b-9673-48b5300b894d"
+			},
+			{
+				"name": "Dirty",
+				"slug": "dirty",
+				"uid": "54b617d2-d7e9-439d-9bd8-2787675a47e3"
+			},
+			{
+				"name": "Coarse",
+				"slug": "coarse",
+				"uid": "6b59cfe5-9dd6-4bac-9ced-7e8a6807da7f"
+			},
+			{
+				"name": "Concrete",
+				"slug": "concrete",
+				"uid": "9626f858-b7f1-4677-bd48-369c43eebbd1"
+			},
+			{
+				"name": "Construction",
+				"slug": "construction",
+				"uid": "976fe418-a5f3-479c-944e-bee5018213b0"
+			},
+			{
+				"name": "Building",
+				"slug": "building",
+				"uid": "9bf7fc25-831e-4476-83c6-d481ed7b7799"
+			},
+			{
+				"name": "Urban",
+				"slug": "urban",
+				"uid": "a689898c-31ae-4d96-8b43-45002335d552"
+			},
+			{
+				"name": "Rough",
+				"slug": "rough",
+				"uid": "abd824a5-384f-43b7-8e90-b4a5207bb0b3"
+			},
+			{
+				"name": "Wall",
+				"slug": "wall",
+				"uid": "b138d7ed-637e-4c63-b1dd-2295e069f06f"
+			},
+			{
+				"name": "Industrial",
+				"slug": "industrial",
+				"uid": "bf46a0e3-cde2-44f8-858a-3e539cd8bba6"
+			},
+			{
+				"name": "Stained",
+				"slug": "stained",
+				"uid": "dd845281-0220-41b6-a55c-244270604f0a"
+			}
+		],
+		"category":
+		{
+			"name": "Concrete",
+			"path": "building-human-made/concrete",
+			"slug": "building-human-made--concrete",
+			"uid": "0f1c4023-9a5c-4078-a73d-7f518ebc8c1b"
+		},
+		"assetFormats": [
+			{
+				"assetFormatType":
+				{
+					"name": "Texture Set",
+					"groupName": "Material Formats",
+					"code": "texture-set",
+					"icon": "cube",
+					"extensions": [
+						"zip"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "GLTF",
+					"groupName": "3D Exchange Formats",
+					"code": "gltf",
+					"icon": "cube",
+					"extensions": [
+						"gltf"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "Additional files",
+					"groupName": "Other Formats",
+					"code": "additional-files",
+					"icon": "file",
+					"extensions": [
+						"zip"
+					]
+				}
+			}
+		],
+		"_PluginMetas":
+		{
+			"apiDataVersion": "0.0.1",
+			"entitlementUid": "1bb041a8-5a8b-4a31-a49e-7e9901819d0d",
+			"cacheSize": 0,
+			"downloaded": []
+		}
+	},
+	"target": "",
+	"quality": "",
+	"format": "texture-set",
+	"fileId": "03d92b5a-f955-4380-855f-1c00cf208446",
+	"platformIncluded": "",
+	"distributionPointBaseUrls": [],
+	"distributionMethod": "",
+	"entitlementUid": "1bb041a8-5a8b-4a31-a49e-7e9901819d0d",
+	"invertedNormal": false,
+	"isConverted": false,
+	"isQuixel": true
+}

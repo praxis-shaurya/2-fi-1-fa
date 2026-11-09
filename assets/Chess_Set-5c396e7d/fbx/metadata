@@ -1,0 +1,98 @@
+{
+	"assetNamespace": "fab",
+	"listing":
+	{
+		"averageRating": 5,
+		"createdAt": "",
+		"description": "<p><strong>Chess set made for videogames</strong></p><p></p><p>Modeled in Blender</p><p>Textured in Substance 3D Painter</p><p></p><p><strong>Specs:</strong></p><p>* 33 separated objects</p><p>* 33556 triangles</p><p></p><p><strong>PBR materials:</strong></p><p>* 3 UV sets:</p><p>* Board</p><p>* Black</p><p>* White</p><p>* All textures are in 2k resolution</p>",
+		"isAiForbidden": true,
+		"isAiGenerated": false,
+		"lastUpdatedAt": "",
+		"listingType": "3d-model",
+		"media": "https://media.fab.com/image_previews/gallery_images/78c95c5a-e94b-4aa7-bf6b-3e0cd8f63b00/a0d122b6-b83a-45c0-9cb8-e51597ca384a.jpg",
+		"publishedAt": "2025-02-04T20:26:16.521696Z",
+		"reviewCount": 1,
+		"thumbnail": "https://media.fab.com/image_previews/gallery_images/ffa3b856-c27a-4c87-b5c0-77327e1d620a/fa223d1e-7fc3-4625-9a18-116cfa57f6e1.jpg",
+		"title": "Chess Set",
+		"uid": "5c396e7d-510f-492f-a49f-dc4170dad37d",
+		"updatedAt": "",
+		"user":
+		{
+			"coverImageUrl": "https://cdn1.epicgames.com/fab/seller/o-l35fx7pt9amnraxt5s8bghcs8px4ys/cover/49880153.jpg",
+			"profileImageUrl": "https://cdn1.epicgames.com/fab/seller/o-l35fx7pt9amnraxt5s8bghcs8px4ys/profile/3d87f79b.jpg",
+			"sellerName": "Tomas Dvorak",
+			"uid": "a254d1bf-d4cc-4e02-b109-9612ae2a6582"
+		},
+		"tags": [
+			{
+				"name": "Pbr",
+				"slug": "pbr",
+				"uid": "080edd3b-d10a-4f32-ace2-30f5baa480dc"
+			},
+			{
+				"name": "Sportscar",
+				"slug": "sportscar",
+				"uid": "32438fd5-f442-4d72-91f4-e93ef4a3cdb5"
+			},
+			{
+				"name": "Set",
+				"slug": "set",
+				"uid": "439e9e59-95f8-4c59-9e2f-170b5040657c"
+			},
+			{
+				"name": "Sport",
+				"slug": "sport",
+				"uid": "984088a4-448e-4382-9a79-cfd19efa1388"
+			},
+			{
+				"name": "Optimized",
+				"slug": "optimized",
+				"uid": "b80236ef-8966-43ab-b564-cfa99bf22b10"
+			},
+			{
+				"name": "Chess",
+				"slug": "chess",
+				"uid": "f1fef2a0-8e50-43c5-8a5f-a0198f4c0b2f"
+			}
+		],
+		"category":
+		{
+			"name": "Furniture & Fixtures",
+			"path": "furniture-fixtures",
+			"slug": "furniture-fixtures",
+			"uid": "3da1d2bd-49b4-4bc5-90e5-d31dadec3bd0"
+		},
+		"assetFormats": [
+			{
+				"assetFormatType":
+				{
+					"name": "FBX",
+					"groupName": "3D Exchange Formats",
+					"code": "fbx",
+					"icon": "cube",
+					"extensions": [
+						"fbx"
+					]
+				}
+			}
+		],
+		"_PluginMetas":
+		{
+			"apiDataVersion": "0.0.1",
+			"entitlementUid": "9e681505-ec2b-48f6-93c3-a0e7530ff64f",
+			"cacheSize": 0,
+			"downloaded": []
+		}
+	},
+	"target": "",
+	"quality": "",
+	"format": "fbx",
+	"fileId": "f98c49c3-c717-492a-8898-9eb40e21dd30",
+	"platformIncluded": "",
+	"distributionPointBaseUrls": [],
+	"distributionMethod": "",
+	"entitlementUid": "9e681505-ec2b-48f6-93c3-a0e7530ff64f",
+	"invertedNormal": false,
+	"isConverted": false,
+	"isQuixel": false
+}
