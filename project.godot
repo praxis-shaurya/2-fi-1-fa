@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2fi1fa"
-run/main_scene="uid://dq53rmd72x14k"
+run/main_scene="uid://cfdgx6wgqfhjv"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor]
+
+movie_writer/movie_file="D:/Shaurya/2-fi-1-fa/movies/static-qr-code(2).png"
 
 [input]
 

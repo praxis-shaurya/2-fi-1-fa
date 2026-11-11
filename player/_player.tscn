@@ -9,8 +9,18 @@ albedo_color = Color(0.15294118, 0.6039216, 0.41568628, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0s4m"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ql73s"]
+
 [node name="Player" type="CharacterBody3D" unique_id=925691681]
 script = ExtResource("1_lyauf")
+walk_speed = 4.0
+sprint_speed = 7.0
+ground_accel = 12.0
+ground_decel = 9.0
+standing_height = 2.0
+crouch_height = 1.4
+slide_duration = 0.8
+min_slide_speed_to_start = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1299366897]
 mesh = SubResource("CapsuleMesh_ql73s")
@@ -20,6 +30,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ql73s")
 shape = SubResource("CapsuleShape3D_v0s4m")
 
 [node name="head" type="Node3D" parent="." unique_id=2036515596]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.961692, -0.48791414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.961692, -0.425211)
 
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=1663435853]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1747973275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8960837, -0.53583217)
+shape = SubResource("SphereShape3D_ql73s")
+
+[node name="ceiling" type="RayCast3D" parent="." unique_id=1701767220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007627487, 0.8229561, 0.018440008)
+target_position = Vector3(0, 0.25, 0)

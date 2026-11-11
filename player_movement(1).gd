@@ -40,6 +40,7 @@ var crouch_amount: float = 0.0  # 0 = standing, 1 = fully crouched, drives eye-h
 @export var slide_duration: float = 0.65
 @export var slide_friction: float = 3.0
 @export var min_slide_speed_to_start: float = 3.0  # must be moving this fast to slide
+@onready var ceiling: RayCast3D = $ceiling
 
 @export_group("Camera Juice")
 @export var bob_frequency: float = 2.4
@@ -168,7 +169,8 @@ func _handle_gravity(delta: float) -> void:
 # ---------------------------------------------------------
 func _handle_crouch_and_slide_input(delta: float) -> void:
 	is_crouch_held = Input.is_action_pressed("crouch")
-
+	if ceiling.is_colliding():
+		is_crouch_held = true
 	var wants_slide := (
 		Input.is_action_just_pressed("crouch")
 		and is_on_floor()
