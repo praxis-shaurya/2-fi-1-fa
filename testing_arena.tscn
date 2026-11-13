@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cvh1rn8imv3fc" path="res://player/_player.tscn" id="1_7tvgn"]
 [ext_resource type="Texture2D" uid="uid://dt7o27hln3sqx" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_blue_512x512.png" id="2_hvbha"]
 [ext_resource type="Texture2D" uid="uid://d22kkiyk411p4" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_lime_512x512.png" id="3_ah7vj"]
+[ext_resource type="PackedScene" uid="uid://cscatle14f33h" path="res://assets/Chess_Set-5c396e7d/fbx/chess-set_extracted/source/chess.fbx" id="4_kptyh"]
+[ext_resource type="PackedScene" uid="uid://ctrxxrmp8cnu5" path="res://assets/Dirty_leaking_concrete_wall-3b5bc07b/glb/converted/dirty_leaking_concrete_wall.glb" id="5_s03xa"]
+[ext_resource type="PackedScene" uid="uid://d1o258dinuyh3" path="res://assets/Acoustic_Guitar_-_steel_string-b4177530/glb/converted/acoustic_guitar_steel_string.glb" id="6_h8lo2"]
+[ext_resource type="Script" uid="uid://bgvahogg5sfw7" path="res://ui.gd" id="7_h8lo2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7tvgn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,17 +46,17 @@ size = Vector3(1, 1.6378174, 1)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kptyh"]
 data = PackedVector3Array(-0.5, 0.8189, 0.5, 0.5, 0.8189, 0.5, -0.5, -0.8189, 0.5, 0.5, 0.8189, 0.5, 0.5, -0.8189, 0.5, -0.5, -0.8189, 0.5, 0.5, 0.8189, -0.5, -0.5, 0.8189, -0.5, 0.5, -0.8189, -0.5, -0.5, 0.8189, -0.5, -0.5, -0.8189, -0.5, 0.5, -0.8189, -0.5, 0.5, 0.8189, 0.5, 0.5, 0.8189, -0.5, 0.5, -0.8189, 0.5, 0.5, 0.8189, -0.5, 0.5, -0.8189, -0.5, 0.5, -0.8189, 0.5, -0.5, 0.8189, -0.5, -0.5, 0.8189, 0.5, -0.5, -0.8189, -0.5, -0.5, 0.8189, 0.5, -0.5, -0.8189, 0.5, -0.5, -0.8189, -0.5, 0.5, 0.8189, 0.5, -0.5, 0.8189, 0.5, 0.5, 0.8189, -0.5, -0.5, 0.8189, 0.5, -0.5, 0.8189, -0.5, 0.5, 0.8189, -0.5, -0.5, -0.8189, 0.5, 0.5, -0.8189, 0.5, -0.5, -0.8189, -0.5, 0.5, -0.8189, 0.5, 0.5, -0.8189, -0.5, -0.5, -0.8189, -0.5)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_ql73s"]
+size = Vector2(8, 8)
+
 [node name="Node3D" type="Node3D" unique_id=198325169]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=822188771]
 environment = SubResource("Environment_ah7vj")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=582346730]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+[node name="sun" type="DirectionalLight3D" parent="." unique_id=582346730]
+transform = Transform3D(-0.6966087, -0.6453657, -0.31343177, -0.5145255, 0.14492458, 0.84513944, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Player" parent="." unique_id=925691681 instance=ExtResource("1_7tvgn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.598934, 0.96879697, 4.6544037)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1487702144]
 
@@ -77,13 +81,57 @@ material_override = SubResource("StandardMaterial3D_i6lj5")
 mesh = SubResource("PrismMesh_ql73s")
 
 [node name="crocuhtest" type="StaticBody3D" parent="." unique_id=775270148]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.183531, 0, -11.269423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.801555, 2.0665503, -1.5803976)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="crocuhtest" unique_id=2017752015]
-transform = Transform3D(4.726416, 0, 0, 0, 1, 0, 0, 0, 9.283644, -6.512888, 1.8339648, 8.585941)
+transform = Transform3D(4.726416, 0, 0, 0, 1, 0, 0, 0, 9.283644, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_i6lj5")
 mesh = SubResource("BoxMesh_ah7vj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="crocuhtest" unique_id=1632375606]
-transform = Transform3D(4.726416, 0, 0, 0, 1, 0, 0, 0, 9.283644, -6.5128884, 2.0489078, 8.585941)
+transform = Transform3D(4.726416, 0, 0, 0, 1, 0, 0, 0, 9.283644, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_kptyh")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1396378963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.612726, -0.19463396, 9.633777)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=784164190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7489681)
+mesh = SubResource("PlaneMesh_ql73s")
+
+[node name="chess" parent="." unique_id=183043392 instance=ExtResource("4_kptyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 10)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=888436379 instance=ExtResource("5_s03xa")]
+transform = Transform3D(-0.04258111, 0, 0.999093, 0, 1, 0, -0.999093, 0, -0.04258111, 15.957336, -0.82671165, 1.5039673)
+
+[node name="Sketchfab_Scene" parent="." unique_id=1006159469 instance=ExtResource("6_h8lo2")]
+transform = Transform3D(-0.031701434, 0.009327419, -0.24780637, -0.18027912, 0.17067508, 0.029486977, 0.17027758, 0.18243635, -0.01491639, 9.047174, 0.27178574, 1.1143069)
+
+[node name="ui" type="Control" parent="." unique_id=1097823868 node_paths=PackedStringArray("player_path")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_h8lo2")
+player_path = NodePath("../Player")
+
+[node name="ProgressBar" type="ProgressBar" parent="ui" unique_id=586155125]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+value = 12.01
+
+[node name="Player" parent="." unique_id=925691681 instance=ExtResource("1_7tvgn")]
+crouch_height = 1.35

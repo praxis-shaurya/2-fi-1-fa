@@ -4,12 +4,16 @@ extends CharacterBody3D
 # Expected scene structure:
 # CharacterBody3D (this script)
 #   CollisionShape3D (capsule, resize this on crouch)
-#   Head (Node3D) -- handles camera bob/tilt, child of body
+#   ceiling (RayCast3D) -- detects low ceilings to force crouch
+#   head (Node3D) -- handles camera bob/tilt, child of body
 #     Camera3D
 
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = $head/Camera3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var ceiling: RayCast3D = $ceiling
+
+var crouch_amount: float = 0.0  # 0 = standing, 1 = fully crouched, drives eye-height offset
 
 # ====== MOVEMENT TUNING ======
 @export_group("Speeds")
@@ -39,6 +43,14 @@ extends CharacterBody3D
 @export var slide_friction: float = 3.0
 @export var min_slide_speed_to_start: float = 3.0  # must be moving this fast to slide
 
+@export_group("Stamina")
+@export var max_stamina: float = 100.0
+@export var sprint_drain_rate: float = 15.0      # stamina/sec while sprinting
+@export var slide_drain_rate: float = 60.0       # stamina/sec while sliding (fast!)
+@export var stamina_regen_rate: float = 12.0     # stamina/sec once regen kicks in
+@export var stamina_regen_delay: float = 1.0     # seconds of no drain before regen starts
+@export var min_stamina_to_slide: float = 15.0   # need this much banked to START a slide
+
 @export_group("Camera Juice")
 @export var bob_frequency: float = 2.4
 @export var bob_amplitude: float = 0.045
@@ -49,6 +61,13 @@ extends CharacterBody3D
 @export var fov_sprint_add: float = 8.0
 @export var fov_slide_add: float = 14.0
 @export var fov_change_speed: float = 8.0
+
+@export_group("Fall Impact Shake")
+@export var fall_shake_threshold: float = 3.0     # min fall distance (m) before any shake
+@export var fall_shake_max_distance: float = 12.0  # fall distance that maps to full shake
+@export var shake_decay_speed: float = 2.5         # how fast trauma bleeds off per second
+@export var shake_rotation_deg: float = 5.0        # max rotational shake at full trauma
+@export var shake_position_amount: float = 0.08    # max positional jitter at full trauma
 
 @export_group("Mouse Look")
 @export var mouse_sensitivity: float = 0.0025
@@ -80,12 +99,22 @@ var target_tilt: float = 0.0
 
 var current_speed_input: Vector2 = Vector2.ZERO  # smoothed input for lean/tilt
 
+# --- Stamina state ---
+var current_stamina: float = 100.0
+var stamina_regen_timer: float = 0.0
+signal stamina_changed(current: float, max: float)
+
+# --- Fall-impact shake state ---
+var trauma: float = 0.0
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera_base_y = head.position.y
 	current_fov = fov_base
 	camera.fov = fov_base
+	current_stamina = max_stamina
+	stamina_changed.emit(current_stamina, max_stamina)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -110,7 +139,7 @@ func _physics_process(delta: float) -> void:
 	_handle_jump_buffer()
 	_handle_crouch_and_slide_input(delta)
 	_handle_movement(delta)
-	_apply_landing_detection()
+	_handle_stamina(delta)
 	_update_camera_juice(delta)
 
 	was_on_floor = is_on_floor()
@@ -166,6 +195,8 @@ func _handle_gravity(delta: float) -> void:
 # ---------------------------------------------------------
 func _handle_crouch_and_slide_input(delta: float) -> void:
 	is_crouch_held = Input.is_action_pressed("crouch")
+	if ceiling.is_colliding():
+		is_crouch_held = true
 
 	var wants_slide := (
 		Input.is_action_just_pressed("crouch")
@@ -173,6 +204,7 @@ func _handle_crouch_and_slide_input(delta: float) -> void:
 		and not is_sliding
 		and _get_horizontal_speed() >= min_slide_speed_to_start
 		and (Input.is_action_pressed("sprint") or current_state == State.SPRINT)
+		and current_stamina >= min_stamina_to_slide
 	)
 
 	if wants_slide:
@@ -185,7 +217,7 @@ func _handle_crouch_and_slide_input(delta: float) -> void:
 		velocity.x = slide_vel.x
 		velocity.z = slide_vel.z
 		# keep slide_speed reference updated so friction curve feels natural
-		if slide_timer <= 0.0 or _get_horizontal_speed() < crouch_speed:
+		if slide_timer <= 0.0 or _get_horizontal_speed() < crouch_speed or current_stamina <= 0.0:
 			_end_slide()
 
 	# smooth capsule height change (crouch or slide both use crouched height)
@@ -195,7 +227,12 @@ func _handle_crouch_and_slide_input(delta: float) -> void:
 	if shape:
 		shape.height = lerp(shape.height, target_height, crouch_transition_speed * delta)
 		collision_shape.position.y = shape.height * 0.5
-		head.position.y = lerp(head.position.y, shape.height - 0.15, crouch_transition_speed * delta)
+
+	# only track a 0-1 blend here — do NOT touch head.position.y directly.
+	# _update_camera_juice() is the single owner of head.position.y so the
+	# bob/crouch/landing-dip systems stop overwriting each other.
+	var target_crouch_amount := 1.0 if want_crouched else 0.0
+	crouch_amount = move_toward(crouch_amount, target_crouch_amount, crouch_transition_speed * delta)
 
 
 func _start_slide() -> void:
@@ -236,7 +273,8 @@ func _handle_movement(delta: float) -> void:
 	if is_crouch_held:
 		current_state = State.CROUCH
 		target_speed = crouch_speed
-	elif Input.is_action_pressed("sprint") and input_dir.y < -0.1:  # sprint only moving forward
+	elif Input.is_action_pressed("sprint") and input_dir.y < -0.1 and current_stamina > 0.0:
+		# sprint only moving forward, and only while stamina remains
 		current_state = State.SPRINT
 		target_speed = sprint_speed
 	else:
@@ -257,44 +295,86 @@ func _handle_movement(delta: float) -> void:
 
 
 # ---------------------------------------------------------
-# LANDING DETECTION: feeds the camera dip effect
+# STAMINA: drains on sprint (normal rate) and slide (fast rate),
+# regenerates after a short delay once you stop draining it.
 # ---------------------------------------------------------
-func _apply_landing_detection() -> void:
-	if not was_on_floor and is_on_floor():
-		var fall_distance := fall_start_y - global_position.y
-		if fall_distance > 1.0:
-			landing_dip_offset = min(fall_distance * 0.03, landing_dip_strength)
-	if not is_on_floor() and velocity.y <= 0.0 and was_on_floor:
-		fall_start_y = global_position.y
-	elif not is_on_floor():
-		fall_start_y = max(fall_start_y, global_position.y)
+func _handle_stamina(delta: float) -> void:
+	var previous_stamina := current_stamina
+	var is_draining := false
+
+	if is_sliding:
+		current_stamina -= slide_drain_rate * delta
+		is_draining = true
+	elif current_state == State.SPRINT:
+		current_stamina -= sprint_drain_rate * delta
+		is_draining = true
+
+	if is_draining:
+		stamina_regen_timer = stamina_regen_delay
+	else:
+		if stamina_regen_timer > 0.0:
+			stamina_regen_timer -= delta
+		else:
+			current_stamina += stamina_regen_rate * delta
+
+	current_stamina = clamp(current_stamina, 0.0, max_stamina)
+
+	# only emit when it actually changes — avoids spamming the UI every frame at rest
+	if not is_equal_approx(current_stamina, previous_stamina):
+		stamina_changed.emit(current_stamina, max_stamina)
+
+
+
+
 
 
 # ---------------------------------------------------------
-# CAMERA JUICE: head bob, landing dip, speed-based FOV, slide tilt.
-# This is most of what makes movement "feel" good vs. just "work."
+# CAMERA JUICE: head bob, landing dip, speed-based FOV, slide tilt,
+# and fall-impact shake. This is most of what makes movement
+# "feel" good vs. just "work."
 # ---------------------------------------------------------
 func _update_camera_juice(delta: float) -> void:
 	# --- Head bob (scales with speed, pauses when airborne/sliding) ---
 	var h_speed := _get_horizontal_speed()
+	var bob_offset := 0.0
 	if is_on_floor() and not is_sliding and h_speed > 0.3:
 		bob_time += delta * bob_frequency * (h_speed / walk_speed)
-		var bob_offset := sin(bob_time * TAU) * bob_amplitude * (h_speed / sprint_speed)
-		head.position.y = lerp(head.position.y, camera_base_y + bob_offset, 15.0 * delta)
+		bob_offset = sin(bob_time * TAU) * bob_amplitude * (h_speed / sprint_speed)
 	else:
 		bob_time = 0.0
 
-	# --- Landing dip recovery ---
-	landing_dip_offset = move_toward(landing_dip_offset, 0.0, landing_dip_recover_speed * delta)
-	camera.position.y = lerp(camera.position.y, -landing_dip_offset, 20.0 * delta)
+	# --- Crouch eye-height offset (derived from crouch_amount, not shape.height) ---
+	var crouch_eye_offset := -(standing_height - crouch_height) * crouch_amount
 
-	# --- Slide camera tilt (roll into the slide) ---
+	# --- Single authoritative write to head.position.y ---
+	# Every vertical camera effect (bob, crouch, slide-crouch) is combined
+	# here and applied once, so nothing fights over this property anymore.
+	var target_head_y := camera_base_y + crouch_eye_offset + bob_offset
+	head.position.y = lerp(head.position.y, target_head_y, 15.0 * delta)
+
+	# --- Landing dip recovery (kept separate: lives on the Camera, not Head) ---
+	landing_dip_offset = move_toward(landing_dip_offset, 0.0, landing_dip_recover_speed * delta)
+
+	# --- Fall-impact shake (decaying trauma, squared falloff feels snappier) ---
+	if trauma > 0.0:
+		trauma = max(trauma - shake_decay_speed * delta, 0.0)
+	var shake_amount := trauma * trauma
+	var shake_rot_x := randf_range(-1.0, 1.0) * deg_to_rad(shake_rotation_deg) * shake_amount
+	var shake_rot_z := randf_range(-1.0, 1.0) * deg_to_rad(shake_rotation_deg) * shake_amount
+	var shake_pos_x := randf_range(-1.0, 1.0) * shake_position_amount * shake_amount
+	var shake_pos_y := randf_range(-1.0, 1.0) * shake_position_amount * shake_amount
+
+	camera.position.x = shake_pos_x
+	camera.position.y = lerp(camera.position.y, -landing_dip_offset, 20.0 * delta) + shake_pos_y
+	camera.rotation.x = shake_rot_x
+
+	# --- Slide camera tilt (roll into the slide), summed with shake ---
 	if is_sliding:
 		target_tilt = deg_to_rad(tilt_amount_deg)
 	else:
 		target_tilt = 0.0
 	current_tilt = lerp(current_tilt, target_tilt, 8.0 * delta)
-	camera.rotation.z = current_tilt
+	camera.rotation.z = current_tilt + shake_rot_z
 
 	# --- Dynamic FOV: sprint and slide both punch FOV out slightly ---
 	var target_fov := fov_base

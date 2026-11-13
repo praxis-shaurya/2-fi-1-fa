@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvh1rn8imv3fc"]
 
-[ext_resource type="Script" uid="uid://d3p7g5sqby4y5" path="res://player_movement(1).gd" id="1_lyauf"]
+[ext_resource type="Script" uid="uid://h84m0gega4h0" path="res://player/player_movement(1).gd" id="1_lyauf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ql73s"]
 
@@ -13,14 +13,6 @@ albedo_color = Color(0.15294118, 0.6039216, 0.41568628, 1)
 
 [node name="Player" type="CharacterBody3D" unique_id=925691681]
 script = ExtResource("1_lyauf")
-walk_speed = 4.0
-sprint_speed = 7.0
-ground_accel = 12.0
-ground_decel = 9.0
-standing_height = 2.0
-crouch_height = 1.4
-slide_duration = 0.8
-min_slide_speed_to_start = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1299366897]
 mesh = SubResource("CapsuleMesh_ql73s")
@@ -39,5 +31,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8960837, -0.53583217)
 shape = SubResource("SphereShape3D_ql73s")
 
 [node name="ceiling" type="RayCast3D" parent="." unique_id=1701767220]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007627487, 0.8229561, 0.018440008)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007627487, 1.2304746, 0.018440008)
 target_position = Vector3(0, 0.25, 0)

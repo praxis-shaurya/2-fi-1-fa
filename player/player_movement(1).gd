@@ -13,12 +13,14 @@ extends CharacterBody3D
 
 var crouch_amount: float = 0.0  # 0 = standing, 1 = fully crouched, drives eye-height offset
 
+@export var stamina: float = 100.0
 # ====== MOVEMENT TUNING ======
 @export_group("Speeds")
 @export var walk_speed: float = 5.0
-@export var sprint_speed: float = 8.0
+@export var sprint_speed: float = 7.5
 @export var crouch_speed: float = 2.5
-@export var slide_speed: float = 11.0
+@export var slide_speed: float = 11.5
+
 
 @export_group("Acceleration")
 @export var ground_accel: float = 14.0       # how fast you reach target speed
@@ -34,12 +36,12 @@ var crouch_amount: float = 0.0  # 0 = standing, 1 = fully crouched, drives eye-h
 @export var fall_gravity_multiplier: float = 1.6  # falling feels snappier than rising
 
 @export_group("Crouch & Slide")
-@export var standing_height: float = 1.8
-@export var crouch_height: float = 1.0
+@export var standing_height: float = 2.0
+@export var crouch_height: float = 1.5
 @export var crouch_transition_speed: float = 10.0
 @export var slide_duration: float = 0.65
 @export var slide_friction: float = 3.0
-@export var min_slide_speed_to_start: float = 3.0  # must be moving this fast to slide
+@export var min_slide_speed_to_start: float = 7.0  # must be moving this fast to slide
 @onready var ceiling: RayCast3D = $ceiling
 
 @export_group("Camera Juice")
@@ -179,7 +181,7 @@ func _handle_crouch_and_slide_input(delta: float) -> void:
 		and (Input.is_action_pressed("sprint") or current_state == State.SPRINT)
 	)
 
-	if wants_slide:
+	if wants_slide and stamina > 40:
 		_start_slide()
 
 	if is_sliding:
@@ -215,6 +217,7 @@ func _start_slide() -> void:
 	slide_direction = dir.normalized() if dir.length() > 0.1 else -transform.basis.z
 	velocity.x = slide_direction.x * slide_speed
 	velocity.z = slide_direction.z * slide_speed
+	stamina -= 40
 
 
 func _end_slide() -> void:
@@ -245,7 +248,7 @@ func _handle_movement(delta: float) -> void:
 	if is_crouch_held:
 		current_state = State.CROUCH
 		target_speed = crouch_speed
-	elif Input.is_action_pressed("sprint") and input_dir.y < -0.1:  # sprint only moving forward
+	elif Input.is_action_pressed("sprint") and input_dir.y < -0.1 and stamina != 0:  # sprint only moving forward
 		current_state = State.SPRINT
 		target_speed = sprint_speed
 	else:
@@ -263,6 +266,12 @@ func _handle_movement(delta: float) -> void:
 	var target_vel := move_dir * target_speed
 	velocity.x = move_toward(velocity.x, target_vel.x, accel * target_speed * delta)
 	velocity.z = move_toward(velocity.z, target_vel.z, accel * target_speed * delta)
+	if target_speed == walk_speed or target_speed == crouch_speed:
+		stamina = min(stamina + 12.0 * delta, 100.0)
+	elif target_speed == sprint_speed:
+		stamina = max(stamina - 25*delta, 0)
+
+
 
 
 # ---------------------------------------------------------
@@ -322,3 +331,4 @@ func _update_camera_juice(delta: float) -> void:
 		target_fov = fov_base + fov_sprint_add
 	current_fov = lerp(current_fov, target_fov, fov_change_speed * delta)
 	camera.fov = current_fov
+	

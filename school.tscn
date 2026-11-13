@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dq53rmd72x14k"]
 
 [ext_resource type="PackedScene" uid="uid://6vxblu7bhggx" path="res://school_static.tscn" id="2_ujjl2"]
+[ext_resource type="Script" uid="uid://bgvahogg5sfw7" path="res://ui.gd" id="2_v3cpt"]
 [ext_resource type="PackedScene" uid="uid://cvh1rn8imv3fc" path="res://player/_player.tscn" id="2_xnh6d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xnh6d"]
@@ -24,7 +25,29 @@ environment = SubResource("Environment_v3cpt")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
+[node name="StaticBody3D" parent="." unique_id=1685434873 instance=ExtResource("2_ujjl2")]
+
+[node name="ui" type="Control" parent="." unique_id=416682414]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_v3cpt")
+player_path = NodePath("../Player")
+
+[node name="ProgressBar" type="ProgressBar" parent="ui" unique_id=289031015]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -67.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="Player" parent="." unique_id=925691681 instance=ExtResource("2_xnh6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.087655, 2)
-
-[node name="StaticBody3D" parent="." unique_id=1685434873 instance=ExtResource("2_ujjl2")]

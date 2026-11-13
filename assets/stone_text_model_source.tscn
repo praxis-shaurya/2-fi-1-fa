@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://w875x1ilqc4j"]
+
+[ext_resource type="PackedScene" uid="uid://cqsw4seqmjqaa" path="res://assets/Stone_Floor___Tile_Texture-eb594091/glb/converted/stone_floor_tile_texture.glb" id="1_d0hkx"]
+
+[node name="Sketchfab_Scene" unique_id=937426132 instance=ExtResource("1_d0hkx")]

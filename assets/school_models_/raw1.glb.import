@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b1kukpsqidqkb"
-path="res://.godot/imported/raw1.glb-a17a15908e53f52158b483723dcf4151.scn"
+path="res://.godot/imported/raw1.glb-596573104a8c42423e47e2b321bc9bdd.scn"
 
 [deps]
 
-source_file="res://assets/raw1.glb"
-dest_files=["res://.godot/imported/raw1.glb-a17a15908e53f52158b483723dcf4151.scn"]
+source_file="res://assets/school_models_/raw1.glb"
+dest_files=["res://.godot/imported/raw1.glb-596573104a8c42423e47e2b321bc9bdd.scn"]
 
 [params]
 

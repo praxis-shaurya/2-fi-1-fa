@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://byw1frffmumf7"]
+
+[ext_resource type="Texture2D" uid="uid://ds8t0oyhqbo2e" path="res://assets/Stone_Floor___Tile_Texture-eb594091/glb/converted/stone_floor_tile_texture_0.png" id="1_3algo"]
+[ext_resource type="Texture2D" uid="uid://7atmjg3f17vj" path="res://assets/Stone_Floor___Tile_Texture-eb594091/glb/converted/stone_floor_tile_texture_1.png" id="2_7wgkx"]
+[ext_resource type="Texture2D" uid="uid://dhqfhvauwvl1u" path="res://assets/Stone_Floor___Tile_Texture-eb594091/glb/converted/stone_floor_tile_texture_2.png" id="3_j0k1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcuyx"]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_3algo")
+metallic = 1.0
+metallic_texture = ExtResource("2_7wgkx")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_7wgkx")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_j0k1r")
+ao_enabled = true
+ao_texture = ExtResource("2_7wgkx")
+uv1_scale = Vector3(5, 5, 1)
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o3dsq"]
+_surfaces = [{
+"aabb": AABB(-0.01120123, -0.99993706, -1, 0.02240246, 1.9998741, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gvhxn"]
+resource_name = "Sketchfab_Scene_Plane_Material_0"
+_surfaces = [{
+"aabb": AABB(-0.01120123, -0.99993706, -1, 0.02240246, 1.9998741, 2),
+"attribute_data": PackedByteArray(210, 61, 44, 194, 44, 194, 210, 61, 44, 194, 44, 194, 210, 61, 210, 61),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_fcuyx"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 237, 42, 254, 255, 0, 0, 0, 0, 237, 42, 255, 255, 0, 0, 255, 255, 237, 42, 0, 0, 255, 255, 0, 0, 237, 42, 251, 170, 125, 85, 251, 170, 125, 85, 251, 170, 125, 85, 251, 170, 125, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_o3dsq")
+
+[node name="Plane_Material_0" type="MeshInstance3D" unique_id=1925662529]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_gvhxn")
